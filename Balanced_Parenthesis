@@ -1,0 +1,81 @@
+#include <iostream>
+#include <stack>
+using namespace std;
+
+
+bool isBalanced(char *a)
+{
+    stack<char> s;
+
+    for(int i=0; a[i] !='\0' ; i++)
+    {
+        switch(a[i])
+        {
+        case '(':
+        case '{':
+        case '[':
+            s.push(a[i]);
+            break;
+
+
+        case ')':
+            if(!s.empty() and s.top()=='(')
+            {
+                s.pop();
+            }
+            else
+            {
+                return false;
+            }
+            break;
+
+            case ']':
+            if(!s.empty() and s.top()=='[')
+            {
+                s.pop();
+            }
+            else
+            {
+                return false;
+            }
+            break;
+
+
+            case '}':
+            if(!s.empty() and s.top()=='{')
+            {
+                s.pop();
+            }
+            else
+            {
+                return false;
+            }
+            break;
+        }
+    }
+}
+
+int main()
+{
+
+
+//1.[a+b*(c+[d+e]*f) + {x + y*(k+l)}]
+//2.[a+b*(c+[d+e]*f) + {x + y*(k+l}}]
+
+char a[] = " {a + b*(c+d) + e*{f+g}}";
+
+if(isBalanced(a)) {
+    cout<<"It is balanced\n";
+}
+else{
+    cout<<"It is not balanced\n";
+}
+
+
+return 0;
+
+
+
+
+
+}
